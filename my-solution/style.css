@@ -1,0 +1,105 @@
+body {
+	background: url(http://www.eonline.com/eol_images/Entire_Site/201627/rs_634x940-160307074539-634.captain-america-civil-war-poster-chris-evans-robert-downey-jr.3716.jpg);
+}
+section {
+	position: relative;
+	width: 1310px;
+	height: 1300px;
+	background-color: gray;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+header {
+	width: 1290px;
+	height: 100px;
+	background-color: blue;
+	margin: 10px;
+	margin-top: 10px; 
+	position: relative;
+}
+#player {
+	width: 200px;
+	height: 40px;
+	left: 150px;
+	top: 36px;
+	background-color: yellow;
+	position: absolute;
+	text-align: center;
+	line-height: 36px;
+}
+#scoreboard {
+	width: 200px;
+	height: 40px;
+	right: 150px;
+	top: 36px;
+	background-color: orange;
+	position: absolute;
+	text-align: center;
+	line-height: 36px;
+}
+.main {
+	width: 1250px;
+	height: 900px;
+	background-color: black;
+	margin: 10px;
+	font-size: 30px;
+	text-align: center;
+	padding: 20px;
+	
+}
+.square {
+	width: 300px;
+	height: 300px;
+	line-height: 300px;
+	display: inline-block;
+}
+
+.topLine {
+	padding-bottom: 7px;
+}
+
+.midLine {
+	padding-bottom: 7px;
+}
+
+#pos1 {
+	background-color: white;
+}
+#pos2 {
+	background-color: red;
+}
+#pos3 {
+	background-color: white;
+}
+#pos4 {
+	background-color: red;
+}
+#pos5 {
+	background-color: white;
+}
+#pos6 {
+	background-color: red;
+}
+#pos7 {
+	background-color: white;
+}
+#pos8 {
+	background-color: red;
+}
+#pos9 {
+	background-color: white;
+}
+footer {
+	width: 1290px;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	background-color: green;
+	margin: 10px;	
+}
+button {
+	width: 200px;
+	height: 50px;
+	background-color: blue;
+	text-align: center;
+}

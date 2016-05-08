@@ -39,56 +39,25 @@ header {
 }
 .main {
 	width: 1250px;
-	height: 900px;
+	height: 1060px;
 	background-color: black;
 	margin: 10px;
-	font-size: 30px;
+	line-height: 300px;
+	font-size: 150px;
 	text-align: center;
-	padding: 20px;
-	
 }
 .square {
 	width: 300px;
 	height: 300px;
-	line-height: 300px;
+	margin-top: 25px;
 	display: inline-block;
+	background-color: white;
+	color: white;
+}
+#pos1, #pos2, #pos3, #pos4, #pos5, #pos6 {
+	border-bottom: 25px solid black;
 }
 
-.topLine {
-	padding-bottom: 7px;
-}
-
-.midLine {
-	padding-bottom: 7px;
-}
-
-#pos1 {
-	background-color: white;
-}
-#pos2 {
-	background-color: red;
-}
-#pos3 {
-	background-color: white;
-}
-#pos4 {
-	background-color: red;
-}
-#pos5 {
-	background-color: white;
-}
-#pos6 {
-	background-color: red;
-}
-#pos7 {
-	background-color: white;
-}
-#pos8 {
-	background-color: red;
-}
-#pos9 {
-	background-color: white;
-}
 footer {
 	width: 1290px;
 	height: 100px;

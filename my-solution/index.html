@@ -12,25 +12,19 @@
 
     <header> 
       <div id="player">Hola</div>
-      <div id="scoreboard">2 - 2</div>
+      <div id="scorebutton">2 - 2</div>
     </header>
 
     <div class="main">
-      <div class="topLine">
-        <div class="square" id="pos1">1</div>
-        <div class="square" id="pos2">2</div>
-        <div class="square" id="pos3">3</div>
-      </div>
-      <div class="midLine">
-        <div class="square" id="pos4">4</div>
-        <div class="square" id="pos5">5</div>
-        <div class="square" id="pos6">6</div>
-      </div>  
-      <div class="botLine">
-        <div class="square" id="pos7">7</div>
-        <div class="square" id="pos8">8</div>
-        <div class="square" id="pos9">9</div>
-      </div>  
+        <div class="square players" id="pos1">a</div>
+        <div class="square players" id="pos2">a</div>
+        <div class="square players" id="pos3">a</div>
+        <div class="square players" id="pos4">a</div>
+        <div class="square players" id="pos5">a</div>
+        <div class="square players" id="pos6">a</div>
+        <div class="square players" id="pos7">a</div>
+        <div class="square players" id="pos8">a</div>
+        <div class="square players" id="pos9">a</div>
     </div>
 
     <footer>
@@ -42,6 +36,190 @@
 </body>
 
 <script> 
+
+
+var matrix = [["", "", ""],["", "", ""],["", "", ""]];
+
+
+function squareClicked () {
+  var squares = document.getElementsByClassName("square");
+  squares[0].addEventListener("click", playerChoice);
+  squares[1].addEventListener("click", playerChoice);
+  squares[2].addEventListener("click", playerChoice);
+  squares[3].addEventListener("click", playerChoice);
+  squares[4].addEventListener("click", playerChoice);
+  squares[5].addEventListener("click", playerChoice);
+  squares[6].addEventListener("click", playerChoice);
+  squares[7].addEventListener("click", playerChoice);
+  squares[8].addEventListener("click", playerChoice);
+  // for (var i=0; i<squares.length; i++) {
+  //     squares[i].addEventListener("click", playerChoice);
+}
+squareClicked();
+
+var player = "X";
+
+function playerChoice () {
+    var position = this.getAttribute("id");
+    if (player === "X") {
+      switch (position) {
+        case "pos1":
+          matrix[0][0] = "X";
+          break;
+        case "pos2":
+          matrix[0][1] = "X";
+          break;
+        case "pos3":
+          matrix[0][2] = "X";
+          break;
+        case "pos4":
+          matrix[1][0] = "X";
+          break;
+        case "pos5":
+          matrix[1][1] = "X";
+          break;
+        case "pos6":
+          matrix[1][2] = "X";
+          break;
+        case "pos7":
+          matrix[2][0] = "X";
+          break;
+        case "pos8":
+          matrix[2][1] = "X";
+          break;
+        case "pos9":
+          matrix[2][2] = "X";
+          break;
+      }
+    }
+    else {
+      switch (position) {
+        case "pos1":
+          matrix[0][0] = "O";
+          break;
+        case "pos2":
+          matrix[0][1] = "O";
+          break;
+        case "pos3":
+          matrix[0][2] = "O";
+          break;
+        case "pos4":
+          matrix[1][0] = "O";
+          break;
+        case "pos5":
+          matrix[1][1] = "O";
+          break;
+        case "pos6":
+          matrix[1][2] = "O";
+          break;
+        case "pos7":
+          matrix[2][0] = "O";
+          break;
+        case "pos8":
+          matrix[2][1] = "O";
+          break;
+        case "pos9":
+          matrix[2][2] = "O";
+          break;
+      }
+    }
+    this.style.color = 'white';
+    this.textContent = player;
+    this.style.background = 'blue';
+    this.removeEventListener("clicked", playerChoice);
+    if (player === "X"){
+        player = "O";
+    }
+    else {
+      player = "X";
+    }
+    if (checkWinner() === true) {
+        alert("Winner");
+        clearSquares();
+    }
+    else {
+        console.log("Not yet a Winner");
+    }
+}
+
+
+function checkWinner () {
+  if (matrix[0][0] === "X" &&matrix[0][1] === "X" && matrix[0][2] === "X") {
+    return true;
+  }
+  else if (matrix[1][0] === "X" &&matrix[1][1] === "X" && matrix[1][2] === "X") {
+    return true;
+  } 
+  else if (matrix[2][0] === "X" &&matrix[2][1] === "X" && matrix[2][2] === "X") {
+    return true;
+  }
+  else if (matrix[0][0] === "X" &&matrix[1][0] === "X" && matrix[2][0] === "X") {
+    return true;
+  }
+  else if (matrix[0][1] === "X" &&matrix[1][1] === "X" && matrix[2][1] === "X") {
+    return true;
+  }
+  else if (matrix[0][2] === "X" &&matrix[1][2] === "X" && matrix[2][2] === "X") {
+    return true;
+  }
+  else if (matrix[0][0] === "X" &&matrix[1][1] === "X" && matrix[2][2] === "X") {
+    return true;
+  }
+  else if (matrix[0][2] === "X" &&matrix[1][1] === "X" && matrix[2][0] === "X") {
+    return true;
+  }
+  else if (matrix[0][0] === "O" &&matrix[0][1] === "O" && matrix[0][2] === "O") {
+    return true;
+  }
+  else if (matrix[1][0] === "O" &&matrix[1][1] === "O" && matrix[1][2] === "O") {
+    return true;
+  } 
+  else if (matrix[2][0] === "O" &&matrix[2][1] === "O" && matrix[2][2] === "O") {
+    return true;
+  }
+  else if (matrix[0][0] === "O" &&matrix[1][0] === "O" && matrix[2][0] === "O") {
+    return true;
+  }
+  else if (matrix[0][1] === "O" &&matrix[1][1] === "O" && matrix[2][1] === "O") {
+    return true;
+  }
+  else if (matrix[0][2] === "O" &&matrix[1][2] === "O" && matrix[2][2] === "O") {
+    return true;
+  }
+  else if (matrix[0][0] === "O" &&matrix[1][1] === "O" && matrix[2][2] === "O") {
+    return true;
+  }
+  else if (matrix[0][2] === "O" &&matrix[1][1] === "O" && matrix[2][0] === "O") {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+function clearbutton () {
+  var button = document.getElementById("resetButton");
+  button.addEventListener('click', clearSquares);
+}
+clearbutton();
+
+function clearSquares () {
+  var squares = document.getElementsByClassName("square");
+  for (var i=0; i<squares.length; i++) {
+      squares[i].textContent = "a";
+      squares[i].style.background = 'white';
+      squares[i].style.color = 'white';
+  }
+  for(var i=0; i<3; i++) {
+    matrix[i] = [];
+    for(var j=0; j<3; j++) {
+        matrix[i][j] = "";
+    }
+  }
+  player = "X";
+  squareClicked();
+}
+
 </script>
 
 </html>

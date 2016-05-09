@@ -2,8 +2,10 @@
 <html lang="en">
 
 <head>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="style.css">
-  <title>Tic Tac Toe</title>
+  <title>Civil War | Tic Tac Toe</title>
 </head>
 
 <body>
@@ -11,8 +13,12 @@
   <section>
 
     <header> 
-      <div id="player">Hola</div>
-      <div id="scorebutton">2 - 2</div>
+      <div id="player">It's 
+        <span style="color: #C31010; font-size: 25px">Captain America's </span>
+        turn</div>
+      <div id="scoreboard">0 - 0</div>
+      <img src="images/cap-ame-shield.png" id="cap-ame" alt="Cap America" width="30px" height="30px">
+      <img src="images/ir-man-head.png" id="ir-man" alt="Iron Man" width="30px" height="30px">
     </header>
 
     <div class="main">
@@ -28,7 +34,7 @@
     </div>
 
     <footer>
-      <button id="resetButton">Reset</button>
+      <button id="resetButton">Start New Battle!!!</button>
     </footer>
 
   </section>
@@ -39,6 +45,10 @@
 
 
 var matrix = [["", "", ""],["", "", ""],["", "", ""]];
+alert("Hi! Let's play some Civil War - Tic Tac Toe. Captain America goes first. Good luck!");
+var player = "X";
+var winnerX = 0;
+var winnerO = 0;
 
 
 function squareClicked () {
@@ -57,7 +67,6 @@ function squareClicked () {
 }
 squareClicked();
 
-var player = "X";
 
 function playerChoice () {
     var position = this.getAttribute("id");
@@ -123,74 +132,106 @@ function playerChoice () {
           break;
       }
     }
-    this.style.color = 'white';
-    this.textContent = player;
-    this.style.background = 'blue';
-    this.removeEventListener("clicked", playerChoice);
+    this.setAttribute("style", "color: rgba(0,0,0,0.1)");
+    this.style.fontSize = "5px";
+    this.removeEventListener("click", playerChoice);
+    var playerTurn = document.getElementById("player");
     if (player === "X"){
+        this.setAttribute("style", "background-image: url(images/captain-america.png");
+        playerTurn.textContent = "It's Iron Man's turn";
         player = "O";
     }
     else {
+      this.setAttribute("style", "background-image: url(images/iron-man.jpg");
+      playerTurn.textContent = "It's Captain America's turn";
       player = "X";
     }
-    if (checkWinner() === true) {
-        alert("Winner");
-        clearSquares();
+    var winner = whoWon();
+    if (winner === "X" || winner === "O") {
+
+        if (winner === "X") {
+          alert("Captain America wins!!");   
+          winnerX ++;
+        }
+        else {
+          alert("Iron Man wins!!");
+          winnerO ++;   
+        }
+        clearSquares();        
     }
     else {
         console.log("Not yet a Winner");
     }
+    checkThreeWinsRow();
 }
 
+function checkThreeWinsRow (winner) {
+  if (winnerX >= 3) {
+    if (winnerO === 0) {
+      alert("Captain America wins 3 in a row!!!");
+      winnerX = 0;
+      winnerO = 0;
+      clearSquares();  
+    }
+  }
+  else if (winnerO >= 3 ) { 
+    if(winnerX === 0) {
+      alert("Iron Man wins 3 in a row!!!");
+      winnerX = 0;
+      winnerO = 0;
+      clearSquares();  
+    }
+  }
+}
 
-function checkWinner () {
+function whoWon () {
   if (matrix[0][0] === "X" &&matrix[0][1] === "X" && matrix[0][2] === "X") {
-    return true;
+    return "X";
   }
   else if (matrix[1][0] === "X" &&matrix[1][1] === "X" && matrix[1][2] === "X") {
-    return true;
+    return "X";
   } 
   else if (matrix[2][0] === "X" &&matrix[2][1] === "X" && matrix[2][2] === "X") {
-    return true;
+    return "X";
   }
   else if (matrix[0][0] === "X" &&matrix[1][0] === "X" && matrix[2][0] === "X") {
-    return true;
+    return "X";
   }
   else if (matrix[0][1] === "X" &&matrix[1][1] === "X" && matrix[2][1] === "X") {
-    return true;
+    return "X";
   }
   else if (matrix[0][2] === "X" &&matrix[1][2] === "X" && matrix[2][2] === "X") {
-    return true;
+    return "X";
   }
   else if (matrix[0][0] === "X" &&matrix[1][1] === "X" && matrix[2][2] === "X") {
-    return true;
+    return "X";
   }
   else if (matrix[0][2] === "X" &&matrix[1][1] === "X" && matrix[2][0] === "X") {
-    return true;
+    return "X";
   }
   else if (matrix[0][0] === "O" &&matrix[0][1] === "O" && matrix[0][2] === "O") {
-    return true;
+    return "O";
   }
   else if (matrix[1][0] === "O" &&matrix[1][1] === "O" && matrix[1][2] === "O") {
-    return true;
+    return "O";
   } 
   else if (matrix[2][0] === "O" &&matrix[2][1] === "O" && matrix[2][2] === "O") {
-    return true;
+    return "O";
   }
   else if (matrix[0][0] === "O" &&matrix[1][0] === "O" && matrix[2][0] === "O") {
-    return true;
+    return "O";
   }
   else if (matrix[0][1] === "O" &&matrix[1][1] === "O" && matrix[2][1] === "O") {
-    return true;
+    return "O";
   }
   else if (matrix[0][2] === "O" &&matrix[1][2] === "O" && matrix[2][2] === "O") {
-    return true;
+    return "O";
   }
   else if (matrix[0][0] === "O" &&matrix[1][1] === "O" && matrix[2][2] === "O") {
-    return true;
+    return "O";
   }
   else if (matrix[0][2] === "O" &&matrix[1][1] === "O" && matrix[2][0] === "O") {
-    return true;
+    return "O";
   }
   else {
     return false;
@@ -206,9 +247,7 @@ clearbutton();
 function clearSquares () {
   var squares = document.getElementsByClassName("square");
   for (var i=0; i<squares.length; i++) {
-      squares[i].textContent = "a";
       squares[i].style.background = 'white';
-      squares[i].style.color = 'white';
   }
   for(var i=0; i<3; i++) {
     matrix[i] = [];
@@ -217,6 +256,13 @@ function clearSquares () {
     }
   }
   player = "X";
+  for (i=0; i<squares.length; i++) {
+    squares[i].setAttribute("style", "background-image: url(images/civil-war.jpg");
+  }
+  var playerTurn = document.getElementById("player");
+  playerTurn.textContent = "It's Captain America's turn";
+  var scoreboard = document.getElementById("scoreboard");
+  scoreboard.textContent = winnerX + " - " + winnerO;
   squareClicked();
 }
 
